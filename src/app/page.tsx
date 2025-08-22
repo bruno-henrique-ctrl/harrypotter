@@ -1,95 +1,104 @@
-import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
+import { apiMovies } from "./api/axios";
+import { Movie } from "./type/Movie";
 
-export default function Home() {
+export const dynamic = "force-static";
+
+const casasHogwarts = [
+  {
+    nome: "Gryffindor",
+    fundador: "Godric Gryffindor",
+    simbolo: "Leão",
+    cores: "Vermelho e Dourado",
+    curiosidade: "A Sala Comunal fica na torre mais alta da escola.",
+  },
+  {
+    nome: "Slytherin",
+    fundador: "Salazar Slytherin",
+    simbolo: "Serpente",
+    cores: "Verde e Prata",
+    curiosidade:
+      "É a casa mais ligada à Câmara Secreta e conhecida por seus alunos estratégicos.",
+  },
+  {
+    nome: "Hufflepuff",
+    fundador: "Helga Hufflepuff",
+    simbolo: "Texugo",
+    cores: "Amarelo e Preto",
+    curiosidade:
+      "Aceita todos os tipos de alunos e valoriza o trabalho duro e a lealdade.",
+  },
+  {
+    nome: "Ravenclaw",
+    fundador: "Rowena Ravenclaw",
+    simbolo: "Águia",
+    cores: "Azul e Prata",
+    curiosidade:
+      "Sua Sala Comunal exige que você resolva um enigma para entrar, valorizando a inteligência e criatividade.",
+  },
+];
+
+const Home = async () => {
+  const moviesApi = await apiMovies.get("", { params: { s: "Harry Potter" } });
+  const movies: Movie[] = moviesApi.data.Search || [];
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <header className={styles.header}>
+        <figure className={styles.logoFigure}>
+          <img src="https://www.freeiconspng.com/uploads/harry-potter-logo-png-11.png" alt="logo" />
+        </figure>
+      </header>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+      <main className={styles.main}>
+        <h1 className={styles.headerTitle}>
+          Mundo Bruxo – Tudo Sobre Harry Potter
+        </h1>
+        <h2 className={styles.headerSubtitle}>
+          Para fãs que querem explorar cada canto do mundo mágico.
+        </h2>
+        <section className={styles.filmesSection}>
+          <h2>Filmes</h2>
+          <ul className={styles.filmesList}>
+            {movies.map((movie, index) => (
+              <li key={index} className={styles.filmesItem}>
+                <Link href={`/movies/${movie.imdbID}`}>
+                  <figure className={styles.filmesFigure}>
+                    <img
+                      src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.png"}
+                      alt={movie.Title}
+                    />
+                  </figure>
+                  <h3 className={styles.filmesTitle}>{movie.Title}</h3>
+                  <em className={styles.filmesYear}>{movie.Year}</em>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className={styles.casasSection}>
+          <h2>Conheça as Casas de Hogwarts – Qual é a Sua?</h2>
+          <ul className={styles.casasList}>
+            {casasHogwarts.map((casa) => (
+              <li key={casa.nome} className={styles.casaItem}>
+                <Link href={`/characters/${casa.nome.toLowerCase()}`}>
+                  <h3>{casa.nome}</h3>
+                  <p>{casa.fundador}</p>
+                  <p>{casa.simbolo}</p>
+                  <p>{casa.cores}</p>
+                  <p>{casa.curiosidade}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <div className={styles.outrosConteudos}>Outros Conteúdos em Breve...</div>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
-}
+};
+
+export default Home;
