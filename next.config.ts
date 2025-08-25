@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['www.freeiconspng.com', 'm.media-amazon.com', 'ik.imagekit.io', 'static.vecteezy.com'],
+    remotePatterns: [
+      { protocol: "https", hostname: "www.freeiconspng.com" },
+      { protocol: "https", hostname: "m.media-amazon.com" },
+      { protocol: "https", hostname: "ik.imagekit.io" },
+      { protocol: "https", hostname: "static.vecteezy.com" },
+    ],
   },
 };
 

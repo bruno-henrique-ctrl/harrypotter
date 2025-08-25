@@ -11,7 +11,7 @@
 
 /* Fonte padrão e linha base */
 html {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   scroll-behavior: smooth;
@@ -89,6 +89,6 @@ table {
 /* Códigos e pré-formatados */
 code,
 pre {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 1rem;
 }

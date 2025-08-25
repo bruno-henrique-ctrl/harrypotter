@@ -48,7 +48,8 @@ const Home = async () => {
     <>
       <header className={styles.header}>
         <figure className={styles.logoFigure}>
-          <Image src="https://www.freeiconspng.com/uploads/harry-potter-logo-png-11.png"
+          <Image
+            src="https://www.freeiconspng.com/uploads/harry-potter-logo-png-11.png"
             alt="logo"
             width={200}
             height={200}
@@ -71,7 +72,11 @@ const Home = async () => {
                 <Link href={`/movies/${movie.imdbID}`}>
                   <figure className={styles.filmesFigure}>
                     <Image
-                      src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.png"}
+                      src={
+                        movie.Poster !== "N/A"
+                          ? movie.Poster
+                          : "/placeholder.png"
+                      }
                       alt={movie.Title}
                       width={200}
                       height={200}
@@ -102,7 +107,9 @@ const Home = async () => {
           </ul>
         </section>
 
-        <div className={styles.outrosConteudos}>Outros Conteúdos em Breve...</div>
+        <div className={styles.outrosConteudos}>
+          Outros Conteúdos em Breve...
+        </div>
       </main>
     </>
   );

@@ -1,31 +1,31 @@
 .footerContainer {
-    background-color: #0b1a2b;
-    color: #f5f5f5;
-    padding: 2rem;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    border-top: 2px solid #ffcc00;
+  background-color: #0b1a2b;
+  color: #f5f5f5;
+  padding: 2rem;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  border-top: 2px solid #ffcc00;
 }
 
 .footerLinks {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .footerLink {
-    color: #f5f5f5;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  color: #f5f5f5;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .footerLink:hover {
-    color: #ffcc00;
+  color: #ffcc00;
 }
 
 .footerCopyright {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #ccc;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
 }
