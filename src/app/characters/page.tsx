@@ -4,6 +4,7 @@ import type { Character } from '@/app/type/character';
 import { apiHouses } from '@/app/api/axios';
 import Loading from '@/app/components/Loading';
 import { Suspense } from 'react';
+import Image from 'next/image';
 
 const HousesAll = async () => {
     const all = await apiHouses.get<Character[]>('/characters');
@@ -30,13 +31,15 @@ const HousesAll = async () => {
                 <li key={character.id} className={styles.casaItem}>
                     <Link href={`/characters/character/${character.id}`}>
                         <figure className={styles.casaFigure}>
-                            <img
+                            <Image
                                 src={
                                     character.image && character.image !== ''
                                         ? character.image
                                         : 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
                                 }
                                 alt={character.name}
+                                width={200}
+                                height={200}
                             />
                         </figure>
                         <h3 className={styles.casaName}>{character.name}</h3>

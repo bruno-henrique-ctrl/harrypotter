@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { apiMovies } from "./api/axios";
 import { Movie } from "./type/Movie";
+import Image from "next/image";
 
 export const dynamic = "force-static";
 
@@ -47,7 +48,11 @@ const Home = async () => {
     <>
       <header className={styles.header}>
         <figure className={styles.logoFigure}>
-          <img src="https://www.freeiconspng.com/uploads/harry-potter-logo-png-11.png" alt="logo" />
+          <Image src="https://www.freeiconspng.com/uploads/harry-potter-logo-png-11.png"
+            alt="logo"
+            width={200}
+            height={200}
+          />
         </figure>
       </header>
 
@@ -65,9 +70,11 @@ const Home = async () => {
               <li key={index} className={styles.filmesItem}>
                 <Link href={`/movies/${movie.imdbID}`}>
                   <figure className={styles.filmesFigure}>
-                    <img
+                    <Image
                       src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.png"}
                       alt={movie.Title}
+                      width={200}
+                      height={200}
                     />
                   </figure>
                   <h3 className={styles.filmesTitle}>{movie.Title}</h3>

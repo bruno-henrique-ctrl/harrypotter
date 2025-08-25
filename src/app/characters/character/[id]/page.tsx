@@ -1,6 +1,7 @@
 import { apiHouses } from "@/app/api/axios";
 import { Character, CharacterDetail } from "@/app/type/character";
 import styles from './page.module.css'
+import Image from "next/image";
 
 type Props = {
     params: {
@@ -45,13 +46,15 @@ const CharacterId = async ({ params }: Props) => {
             </header>
 
             <section className={styles.section}>
-                <img
+                <Image
                     src={
                         character.image ||
                         "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
                     }
                     alt={character.name}
                     className={styles.characterImage}
+                    width={200}
+                    height={200}
                 />
             </section>
 

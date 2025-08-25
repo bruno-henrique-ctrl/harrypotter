@@ -1,6 +1,7 @@
 import { apiMovies } from "@/app/api/axios";
 import style from "./page.module.css";
 import type { Movie, MovieDetail } from "@/app/type/Movie";
+import Image from "next/image";
 
 type Props = {
     params: {
@@ -37,9 +38,11 @@ const Movie = async ({ params }: Props) => {
         <article className={style.movieArticle}>
             <header className={style.movieHeader}>
                 <figure className={style.movieFigure}>
-                    <img
+                    <Image
                         src={movie.Poster !== "N/A" ? movie.Poster : "/no-image.png"}
                         alt={movie.Title}
+                        width={200}
+                        height={200}
                     />
                 </figure>
                 <div className={style.movieInfo}>

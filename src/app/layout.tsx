@@ -4,8 +4,8 @@ import Menu from "./components/Menu";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "blog",
+  title: "Harry Potter",
+  description: "Harry Potter website",
 };
 
 export default function RootLayout({
