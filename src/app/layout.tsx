@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Menu from "./components/Menu";
-import Footer from "./components/Footer";
+import Menu from "./_components/Menu";
+import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
   title: "Harry Potter",

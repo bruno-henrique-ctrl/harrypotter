@@ -1,10 +1,8 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import { apiMovies } from "./api/axios";
-import { Movie } from "./type/Movie";
+import { apiMovies } from "./_api/axios";
+import { Movie } from "./_type/Movie";
 import Image from "next/image";
-
-export const dynamic = "force-static";
 
 const casasHogwarts = [
   {

@@ -1,8 +1,8 @@
 import styles from "./page.module.css";
 import Link from "next/link";
-import type { Character } from "@/app/type/character";
-import { apiHouses } from "@/app/api/axios";
-import Loading from "@/app/components/Loading";
+import type { Character } from "../_type/character";
+import { apiHouses } from "../_api/axios";
+import Loading from "../_components/Loading";
 import { Suspense } from "react";
 import Image from "next/image";
 
