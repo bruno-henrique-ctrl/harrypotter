@@ -1,0 +1,96 @@
+name: Harry Potter Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main 
+
+jobs:
+  lint_prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+  
+      - name: Run Linter
+        run: npm run lint
+
+      - name: Run Prettier
+        run: npm run format
+  test:
+    needs: lint_prettier
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: execute test
+        run: npm run test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Create production build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_KEY: ${{ secrets.NEXT_PUBLIC_API_KEY }}
+
+      - name: Upload Build Artifact (Salvar artefato)
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: .next/static
+
+
+  deploy:
+    needs: build 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (Configurar Node)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install vercel
+        run: npm install -g vercel@latest
+      
+      - name: Deploy to Vercel
+        run: vercel --prod --yes --token=${{secrets.VERCEL_TOKEN}}
+        
+        env:
+          vercel-org-id: ${{ secrets.ORG_ID }} 
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
