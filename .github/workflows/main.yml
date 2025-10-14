@@ -6,13 +6,13 @@ on:
       - main
   pull_request:
     branches:
-      - main 
+      - main
 
 jobs:
   lint_prettier:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -21,7 +21,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install dependencies 🧙‍♂️ (Correção: Necessário para lint/format)
         run: npm install
   
       - name: Run Linter
@@ -29,12 +29,14 @@ jobs:
 
       - name: Run Prettier
         run: npm run format
+
+---
+
   test:
     needs: lint_prettier
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -42,42 +44,26 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+      
+      # 🚨 CORREÇÃO CRÍTICA: Instalação de dependências é necessária para 'npm run test'
+      - name: Install dependencies 🧪
+        run: npm install
 
       - name: execute test
         run: npm run test
 
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Create production build
-        run: npm run build
-        env:
-          NEXT_PUBLIC_API_KEY: ${{ secrets.NEXT_PUBLIC_API_KEY }}
-
-      - name: Upload Build Artifact (Salvar artefato)
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-build
-          path: .next/static
-
+---
+      
+  # 💡 REMOÇÃO DA ETAPA BUILD: Não é necessário fazer o build no GitHub Actions para o Vercel
+  # O Vercel faz o build automaticamente.
 
   deploy:
-    needs: build 
+    needs: test # Depende apenas do 'test'
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 # Baixa o código
 
       - name: Setup Node.js (Configurar Node)
         uses: actions/setup-node@v4
@@ -85,12 +71,21 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      # 🚨 CORREÇÃO CRÍTICA: Instalação de dependências é necessária para comandos globais e scripts
+      - name: Install dependencies 🚀
+        run: npm install
+
       - name: Install vercel
         run: npm install -g vercel@latest
       
-      - name: Deploy to Vercel
-        run: vercel --prod --yes --token=${{secrets.VERCEL_TOKEN}}
-        
+      - name: Deploy to Vercel (Vercel fará o build)
+        # O Vercel fará o build (incluindo a injeção da variável de ambiente)
+        run: vercel pull --yes --environment=production && vercel deploy --prebuilt --prod --yes --token=${{secrets.VERCEL_TOKEN}}
+        # Nota: O comando 'vercel deploy' precisa do código-fonte e do 'vercel pull'
+        # para configurar corretamente o projeto e o ambiente de produção.
+
         env:
-          vercel-org-id: ${{ secrets.ORG_ID }} 
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          # Para Vercel, ORG_ID e PROJECT_ID são necessários para 'vercel pull'
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          # O NEXT_PUBLIC_API_KEY será injetado pelo Vercel durante o build
