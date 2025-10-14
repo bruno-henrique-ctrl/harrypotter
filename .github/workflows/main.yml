@@ -6,13 +6,13 @@ on:
       - main
   pull_request:
     branches:
-      - main 
+      - main
 
 jobs:
   lint_prettier:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -29,12 +29,12 @@ jobs:
 
       - name: Run Prettier
         run: npm run format
+
   test:
     needs: lint_prettier
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -42,55 +42,36 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+      
+      - name: Install
+        run: npm install
 
       - name: execute test
         run: npm run test
 
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Create production build
-        run: npm run build
-        env:
-          NEXT_PUBLIC_API_KEY: ${{ secrets.NEXT_PUBLIC_API_KEY }}
-
-      - name: Upload Build Artifact (Salvar artefato)
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-build
-          path: .next/static
-
-
   deploy:
-    needs: build 
+    needs: test 
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 
 
-      - name: Setup Node.js (Configurar Node)
+      - name: Setup Node.js 
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+
+      - name: Install 
+        run: npm install
 
       - name: Install vercel
         run: npm install -g vercel@latest
       
       - name: Deploy to Vercel
-        run: vercel --prod --yes --token=${{secrets.VERCEL_TOKEN}}
-        
+        run: vercel pull --prod --yes --token=${{secrets.VERCEL_TOKEN}}
+
         env:
-          vercel-org-id: ${{ secrets.ORG_ID }} 
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
