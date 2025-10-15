@@ -57,7 +57,7 @@ const Home = async () => {
 
       <main className={styles.main}>
         <h1 className={styles.headerTitle}>
-          Mundo Bruxo -– Tudo Sobre Harry Potter
+          Mundo Bruxo – Tudo Sobre Harry Potter
         </h1>
         <h2 className={styles.headerSubtitle}>
           Para fãs que querem explorar cada canto do mundo mágico.
