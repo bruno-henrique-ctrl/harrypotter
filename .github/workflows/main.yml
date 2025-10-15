@@ -75,4 +75,4 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          NEXT_PUBLIC_OMDB_API_KEY: ${{ secrets.NEXT_PUBLIC_OMDB_API_KEY }}
+          NEXT_PUBLIC_OMDB_API_KEY: ${{ secrets.NEXT_PUBLIC_API_KEY }}
