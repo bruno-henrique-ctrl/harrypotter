@@ -1,6 +1,6 @@
-import { apiMovies } from "@/app/api/axios";
+import { apiMovies } from "../../_api/axios";
 import style from "./page.module.css";
-import type { Movie, MovieDetail } from "@/app/type/Movie";
+import type { Movie, MovieDetail } from "../../_type/Movie";
 import Image from "next/image";
 
 type Props = {

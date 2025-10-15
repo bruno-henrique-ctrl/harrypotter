@@ -1,5 +1,5 @@
-import { apiHouses } from "@/app/api/axios";
-import { Character, CharacterDetail } from "@/app/type/character";
+import { apiHouses } from "../../../_api/axios";
+import { Character, CharacterDetail } from "../../../_type/character";
 import styles from "./page.module.css";
 import Image from "next/image";
 

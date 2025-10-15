@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import Link from "next/link";
-import type { Character } from "@/app/type/character";
-import { apiHouses } from "@/app/api/axios";
+import type { Character } from "../../_type/character";
+import { apiHouses } from "../../_api/axios";
 import Image from "next/image";
 
 type Props = {
