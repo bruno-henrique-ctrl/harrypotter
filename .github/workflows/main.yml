@@ -43,36 +43,33 @@ jobs:
           node-version: '20'
           cache: 'npm'
       
-      - name: Install
+      - name: Install dependencies
         run: npm install
 
       - name: execute test
         run: npm run test
 
   build_deploy:
-    needs: test 
+    needs: test
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js 
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install 
+      - name: Install dependencies
         run: npm install
 
-      - name: Install vercel
+      - name: Install Vercel CLI
         run: npm install -g vercel@latest
-
-      - name: build
-        run: npm run build
       
-      - name: Deploy to Vercel
+      - name: Deploy to Vercel (Vercel fará o build otimizado)
         run: vercel --prod --yes --token=${{secrets.VERCEL_TOKEN}}
 
         env:
