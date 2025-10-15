@@ -49,7 +49,7 @@ jobs:
       - name: execute test
         run: npm run test
 
-  build_deploy:
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     
