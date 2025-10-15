@@ -68,6 +68,9 @@ jobs:
 
       - name: Install vercel
         run: npm install -g vercel@latest
+
+      - name: build
+        run: npm run build
       
       - name: Deploy to Vercel
         run: vercel --prod --yes --token=${{secrets.VERCEL_TOKEN}}
