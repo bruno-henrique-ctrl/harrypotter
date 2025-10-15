@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧙‍♂️ Harry Potter Movies & Characters
 
-## Getting Started
+Um projeto em **Next.js** que consome a **API do OMDb** e a **HP API** para exibir informações sobre os **filmes e personagens** do universo de **Harry Potter**.
 
-First, run the development server:
+## 🚀 Demo
+
+🔗 [Acesse o projeto no Vercel](https://harrypotter-gamma.vercel.app/)
+
+---
+
+## 🧩 Tecnologias utilizadas
+
+- **Next.js 15**
+- **React**
+- **Axios** para requisições HTTP
+- **OMDb API** – informações sobre os filmes
+- **HP API (hp-api.onrender.com)** – informações sobre os personagens
+- **TypeScript** (opcional, se o projeto usar)
+
+---
+
+## ⚙️ Funcionalidades
+
+- Exibe uma lista de **filmes do Harry Potter** com informações da **OMDb API**  
+- Mostra **detalhes de cada filme**, como título, ano e pôster  
+- Lista **personagens** e suas casas, vindos da **HP API**  
+- Interface simples e responsiva  
+
+---
+
+## 📦 Como rodar o projeto localmente
 
 ```bash
+# Clone este repositório
+git clone https://github.com/seu-usuario/harrypotter.git
+
+# Acesse a pasta do projeto
+cd harrypotter
+
+# Instale as dependências
+npm install
+
+# Crie o arquivo .env.local e adicione sua chave da OMDb
+NEXT_PUBLIC_OMDB_API_KEY=sua_chave_aqui
+
+# Rode o projeto
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
