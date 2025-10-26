@@ -7,7 +7,7 @@ Um projeto em **Next.js** que consome a **API do OMDb** e a **HP API** para exib
 🔗 [Acesse o projeto no Vercel](https://harrypotter-gamma.vercel.app/)
 
 ## 🛠️ Status da Build
-[![Status do Workflow CI](https://github.com/seu-usuario/harrypotter/actions/workflows/ci.yml/badge.svg)](https://github.com/seu-usuario/harrypotter/actions)
+[![Status do Workflow CI](https://github.com/bruno-henrique-ctrl/harrypotter/actions/workflows/main.yml/badge.svg)](https://github.com/bruno-henrique-ctrl/harrypotter/actions)
 Você pode acompanhar o status da pipeline de integração contínua (CI) e outros workflows na aba **Actions** do repositório no GitHub.
 
 ---
