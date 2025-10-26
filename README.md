@@ -6,6 +6,10 @@ Um projeto em **Next.js** que consome a **API do OMDb** e a **HP API** para exib
 
 🔗 [Acesse o projeto no Vercel](https://harrypotter-gamma.vercel.app/)
 
+## 🛠️ Status da Build
+[![Status do Workflow CI](https://github.com/seu-usuario/harrypotter/actions/workflows/ci.yml/badge.svg)](https://github.com/seu-usuario/harrypotter/actions)
+Você pode acompanhar o status da pipeline de integração contínua (CI) e outros workflows na aba **Actions** do repositório no GitHub.
+
 ---
 
 ## 🧩 Tecnologias utilizadas
@@ -21,27 +25,22 @@ Um projeto em **Next.js** que consome a **API do OMDb** e a **HP API** para exib
 
 ## ⚙️ Funcionalidades
 
-- Exibe uma lista de **filmes do Harry Potter** com informações da **OMDb API**  
-- Mostra **detalhes de cada filme**, como título, ano e pôster  
-- Lista **personagens** e suas casas, vindos da **HP API**  
-- Interface simples e responsiva  
+- Exibe uma lista de **filmes do Harry Potter** com informações da **OMDb API**  
+- Mostra **detalhes de cada filme**, como título, ano e pôster  
+- Lista **personagens** e suas casas, vindos da **HP API**  
+- Interface simples e responsiva  
 
 ---
 
 ## 📦 Como rodar o projeto localmente
 
 ```bash
-# Clone este repositório
-git clone https://github.com/seu-usuario/harrypotter.git
+git clone [https://github.com/seu-usuario/harrypotter.git](https://github.com/seu-usuario/harrypotter.git)
 
-# Acesse a pasta do projeto
 cd harrypotter
 
-# Instale as dependências
 npm install
 
-# Crie o arquivo .env.local e adicione sua chave da OMDb
 NEXT_PUBLIC_OMDB_API_KEY=sua_chave_aqui
 
-# Rode o projeto
 npm run dev
